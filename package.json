@@ -27,6 +27,7 @@
     "@tensorflow/tfjs-node": "1.2.11",
     "async": "^2.6.1",
     "fit-curve": "^0.1.6",
+    "robotjs": "^0.6.0",
     "rxjs": "^6.3.3",
     "seedrandom": "^3.0.5",
     "string-just": "0.0.2"

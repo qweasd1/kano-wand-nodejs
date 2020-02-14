@@ -12,6 +12,8 @@ const height = 600;
 const conv = new Conv(width, height);
 var gr = new gestureSpells()
 
+var robot = require("robotjs");
+
 
 class Wand {
 
@@ -236,13 +238,15 @@ class Wand {
         let w = data.readInt16LE(4);
         let z = data.readInt16LE(6);
 
+
+
         const pos = conv.position([x, y, z, w]);
 
         let pitch = `Pitch: ${just.ljust(z.toString(), 16, " ")}`;
         let roll = `Roll: ${just.ljust(w.toString(), 16, " ")}`;
 
         // console.log(`${pitch}${roll}(x, y): (${x.toString()}, ${y.toString()})`)
-        // console.log(this.getXY(x, y))
+        robot.moveMouse(-x*1 + 500,-y*1 + 500)
         if (this.buttonPressed) {
             this.currentSpell.push([pos.x, pos.y]);
             this.positions.next([pos.x, pos.y]);
@@ -341,10 +345,12 @@ class Wand {
 
     reset_position(callback) {
         console.log("Reset Position");
-        var reset = Buffer.alloc(1);
-        reset.writeUInt8(1,0)
-        this.quaternionsResetCharacteristic.write(reset, true);
-        if(typeof(callback) == typeof(Function)) callback();
+        robot.mouseClick()
+        // var reset = Buffer.alloc(1);
+        // reset.writeUInt8(1,0)
+        // this.quaternionsResetCharacteristic.write(reset, true);
+        // if(typeof(callback) == typeof(Function)) callback();
+
     }
 }
 
